@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    environment {
+        DEPLOY_SERVER = '192.168.106.137'
+        DEPLOY_USER = 'jenkinsclient'
+    }
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git 'https://github.com/LinuxTute-GitHub/myfirstrepo.git'
+            }
+        }
+
+
+        stage('Test') {
+            steps {
+                sh './myfirstscript.sh'  // Replace with your test script
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sshagent(['your-ssh-credentials-id']) {
+                    sh 'scp myfirstscript.sh $DEPLOY_USER@$DEPLOY_SERVER:/home/$DEPLOY_USER/'
+                    sh 'ssh $DEPLOY_USER@$DEPLOY_SERVER "bash /home/$DEPLOY_USER/myfirstscript.sh"'
+                }
+            }
+        }
+    }
+}
+

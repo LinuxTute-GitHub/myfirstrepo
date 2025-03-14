@@ -16,7 +16,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh './myfirstscript.sh'  // Replace with your test script
+                sh './testscript.sh'  // Replace with your test script
             }
         }
 

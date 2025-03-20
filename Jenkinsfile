@@ -13,8 +13,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    sh 'chmod +x /home/git/myfirstrepo/myfirstscript.sh'
-                    sh 'bash /home/git/myfirstrepo/myfirstscript.sh'
+                    sh 'sh ./myfirstscript.sh'
                 }
             }
         }

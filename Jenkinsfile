@@ -27,7 +27,7 @@ pipeline {
                     sh '''
                     docker stop $CONTAINER_NAME || true
                     docker rm $CONTAINER_NAME || true
-                    docker run -d  --name $CONTAINER_NAME $DOCKER_IMAGE
+                    docker run -it $CONTAINER_NAME $DOCKER_IMAGE
                     '''
                 }
             }
